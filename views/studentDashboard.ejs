@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .dashboard-container {
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      .dashboard-section {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        padding: 15px;
+      }
+
+      h2 {
+        color: #3498db;
+      }
+
+      h3 {
+        color: #333333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/students">Students</a></li>
+          <li><a href="/teachers">Teachers</a></li>
+          <li><a href="/classes">Classes</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <!-- Link to the Contact Us section in the footer -->
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="dashboard-container">
+        <h2>Welcome, <%= studentName %>!</h2>
+        <div class="dashboard-section">
+          <h3>Class Schedule</h3>
+          <!-- Add class schedule content here -->
+          <table>
+            <tr>
+              <th>Monday</th>
+              <th>Tuesday</th>
+            </tr>
+            <tr>
+              <td>Data 1</td>
+              <td>Data 2</td>
+            </tr>
+          </table>
+        </div>
+        <div class="dashboard-section">
+          <h3>Assignments</h3>
+          <!-- Add assignments content here -->
+          <p>No assignment for now.</p>
+        </div>
+        <div class="dashboard-section">
+          <h3>Grades</h3>
+          <!-- Add grades content here -->
+        </div>
+        <div class="dashboard-section">
+          <h3>Communication</h3>
+          <!-- Add communication content here -->
+        </div>
+        <div class="dashboard-section">
+          <h3>Announcements</h3>
+          <!-- Add announcements content here -->
+        </div>
+      </div>
+      <%-include('partials/footer.ejs') %>
+    </main>
+  </body>
+</html>

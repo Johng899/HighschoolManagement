@@ -1,0 +1,97 @@
+/* styles.css */
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+header {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 15px 0;
+}
+
+nav {
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+nav a:hover {
+  color: #ecf0f1;
+}
+
+/* Add additional styles as needed */
+/* styles.css */
+
+/* styles.css */
+
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.info-section {
+  max-width: 300px;
+  text-align: left;
+}
+
+.info-section h3 {
+  color: #3498db;
+}
+
+footer p {
+  margin: 10px 0 0 0;
+}
+
+footer p:first-child {
+  margin-top: 0;
+}
+
+/* Add additional styles as needed */
+
+/* Styles for the welcome message */
+.welcome-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.welcome-text {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Additional styles */
+.container {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
