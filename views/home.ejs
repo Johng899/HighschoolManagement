@@ -1,13 +1,93 @@
 <%-include ('partials/header.ejs', { pageTitle: 'Home Page' })%>
-<div class="container">
-  <h1 class="welcome-title">Welcome to Our Website!</h1>
-  <p class="welcome-text">
-    Thank you for visiting our site. We are dedicated to providing you with the
-    best experience and valuable information.
-  </p>
-  <p class="welcome-text">
-    Feel free to explore our pages, learn more about our services, and reach out
-    to us if you have any questions or inquiries. We're here to help!
-  </p>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Horizontal Divs with Links</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <style>
+      body {
+        margin: 20px;
+      }
+      .box {
+        padding: 20px;
+      }
+      .card-link {
+        display: block;
+        height: 200px;
+        background-color: white;
+        transition: background-color 0.3s, color 0.3s;
+        display: block;
+        height: 300px;
+        border: solid rgb(137, 124, 124) 1px;
+        margin: 5px;
+        width: 100%;
+      }
+
+      .card-link:hover {
+        background-color: rgb(0, 0, 0);
+        color: white;
+      }
+
+      .card-link:hover .card-body {
+        color: white;
+        background-color: rgb(37, 19, 19);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <a href="/students" class="card-link">
+            <div class="box">
+              <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+              <br />
+              <br />
+              <h1>Student</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Cupiditate officiis quidem repellendus, excepturi quo nihil
+                quisquam,
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="https://example.com" class="card-link">
+            <div class="box">
+              <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+              <br />
+              <br />
+              <h1>Teacher</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Cupiditate officiis quidem repellendus, excepturi quo nihil
+                quisquam,
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="https://example.com" class="card-link">
+            <div class="box">
+              <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+              <br />
+              <br />
+              <h1>Admin</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Cupiditate officiis quidem repellendus, excepturi quo nihil
+                quisquam,
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
 <%-include('partials/footer.ejs') %>

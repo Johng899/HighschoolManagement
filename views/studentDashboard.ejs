@@ -19,6 +19,10 @@
       .dashboard-container {
         background-color: #f4f4f4;
         padding: 20px;
+        transition: transform 0.8s ease-in-out;
+        :hover {
+          transform: translateY(-5px);
+        }
       }
 
       .dashboard-section {
@@ -56,37 +60,35 @@
     <main>
       <div class="dashboard-container">
         <h2>Welcome, <%= studentName %>!</h2>
-        <div class="dashboard-section">
-          <h3>Class Schedule</h3>
-          <!-- Add class schedule content here -->
-          <table>
-            <tr>
-              <th>Monday</th>
-              <th>Tuesday</th>
-            </tr>
-            <tr>
-              <td>Data 1</td>
-              <td>Data 2</td>
-            </tr>
-          </table>
-        </div>
-        <div class="dashboard-section">
-          <h3>Assignments</h3>
-          <!-- Add assignments content here -->
-          <p>No assignment for now.</p>
-        </div>
-        <div class="dashboard-section">
-          <h3>Grades</h3>
-          <!-- Add grades content here -->
-        </div>
-        <div class="dashboard-section">
-          <h3>Communication</h3>
-          <!-- Add communication content here -->
-        </div>
-        <div class="dashboard-section">
-          <h3>Announcements</h3>
-          <!-- Add announcements content here -->
-        </div>
+        <a
+          ><div class="dashboard-section">
+            <h3>Class Schedule</h3>
+          </div></a
+        >
+        <a href="/assignmentView.ejs"
+          ><div class="dashboard-section">
+            <h3>Assignments</h3>
+            <!-- Add assignments content here -->
+          </div></a
+        >
+        <a
+          ><div class="dashboard-section">
+            <h3>Grades</h3>
+            <!-- Add grades content here -->
+          </div></a
+        >
+        <a
+          ><div class="dashboard-section">
+            <h3>Communication</h3>
+            <!-- Add communication content here -->
+          </div></a
+        >
+        <a
+          ><div class="dashboard-section">
+            <h3>Announcements</h3>
+            <!-- Add announcements content here -->
+          </div></a
+        >
       </div>
       <%-include('partials/footer.ejs') %>
     </main>

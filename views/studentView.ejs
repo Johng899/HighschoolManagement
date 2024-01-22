@@ -1,3 +1,5 @@
+<%-include ('partials/header.ejs', { pageTitle: 'Home Page' })%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student</title>
     <link rel="stylesheet" href="/styles.css" />
-    <style>
+    <!-- <style>
       /* public/css/styles.css */
 
       main {
@@ -56,37 +58,82 @@
       button:hover {
         background-color: #2980b9;
       }
-    </style>
+    </style> -->
   </head>
 
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/students">Students</a></li>
-          <li><a href="/teachers">Teachers</a></li>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <!-- Link to the Contact Us section in the footer -->
-          <li><a href="#about">About Us</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div class="login-container">
-        <h2>Student Login</h2>
-        <form action="/students" method="post">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required />
+    <section class="vh-100" style="background-color: #9a616d">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="https://wallpaperbat.com/img/560397-university-students-male-and-female-college-students-1600x974-download-hd-wallpaper.jpg"
+                    alt="login form"
+                    class="img-fluid"
+                    style="border-radius: 1rem 0 0 1rem; height: 600px"
+                  />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                  <div class="card-body p-4 p-lg-5 text-black">
+                    <!-- this is the login form -->
+                    <form action="/student" method="POST">
+                      <div class="d-flex align-items-center mb-3 pb-1">
+                        <span class="h1 fw-bold mb-0"
+                          ><i class="fa-solid fa-school fa-2xl"></i
+                        ></span>
+                      </div>
 
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+                      <h5
+                        class="fw-normal mb-3 pb-3"
+                        style="letter-spacing: 1px"
+                      >
+                        Sign into your account
+                      </h5>
 
-          <button type="submit">Login</button>
-        </form>
+                      <div class="form-outline mb-4">
+                        <input
+                          type="email"
+                          id="form2Example17"
+                          class="form-control form-control-lg"
+                          name="email"
+                        />
+                        <label class="form-label" for="form2Example17"
+                          >Email address</label
+                        >
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="form2Example27"
+                          class="form-control form-control-lg"
+                          name="password"
+                        />
+                        <label class="form-label" for="form2Example27"
+                          >Password</label
+                        >
+                      </div>
+
+                      <div class="pt-1 mb-4">
+                        <button
+                          class="btn btn-dark btn-lg btn-block"
+                          type="submit"
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <%-include('partials/footer.ejs') %>
-    </main>
+    </section>
   </body>
+  <%-include('partials/footer.ejs') %>
 </html>
