@@ -8,7 +8,10 @@ const studentSchema = new mongoose.Schema({
   username: String,
   password: String,
   gender: String,
-  approved: Boolean,
+  dob: Date,
+  address: String,
+  phone: String,
+  emergency_contact: String,
 });
 
 const Student = new mongoose.model("Student", studentSchema);

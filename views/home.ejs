@@ -9,12 +9,18 @@
     />
 
     <style>
-      body {
-        margin: 20px;
+      header {
+        position: absolute;
       }
       .box {
         padding: 20px;
       }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .card-link {
         display: block;
         height: 200px;
@@ -35,6 +41,9 @@
       .card-link:hover .card-body {
         color: white;
         background-color: rgb(37, 19, 19);
+      }
+      footer {
+        margin-top: 70px;
       }
     </style>
   </head>
@@ -59,7 +68,7 @@
         <div class="col">
           <a href="https://example.com" class="card-link">
             <div class="box">
-              <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+              <i class="fa-solid fa-users fa-2xl"></i>
               <br />
               <br />
               <h1>Teacher</h1>
@@ -74,7 +83,7 @@
         <div class="col">
           <a href="https://example.com" class="card-link">
             <div class="box">
-              <i class="fa-solid fa-graduation-cap fa-2xl"></i>
+              <i class="fa-solid fa-lock fa-2xl"></i>
               <br />
               <br />
               <h1>Admin</h1>
@@ -88,6 +97,7 @@
         </div>
       </div>
     </div>
+
+    <%-include('partials/footer.ejs') %>
   </body>
 </html>
-<%-include('partials/footer.ejs') %>

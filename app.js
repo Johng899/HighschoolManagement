@@ -36,13 +36,16 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.render("home");
 });
-
+app.get("/studentProfile", (req, res) => {
+  res.render("studentProfile");
+});
 // Set up a default route for rendering the student dashboard
 app.get("/students", (req, res) => {
   res.render("studentView");
 });
+// student login post form
 app.post("/students", async (req, res) => {
-  const usernameInput = req.body.username;
+  const usernameInput = req.body.email;
   const passwordInput = req.body.password;
   const result = await Student.findOne({ username: usernameInput });
 
