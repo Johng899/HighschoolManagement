@@ -1,12 +1,15 @@
 document.getElementById("toggleButton").addEventListener("click", function () {
   const sidebar = document.querySelector(".sidebar");
   const mainContainer = document.querySelector(".main-container");
+  const footer = document.querySelector(".footer-content");
 
   if (sidebar.style.left === "-250px") {
     sidebar.style.left = "0";
     mainContainer.style.marginLeft = "250px";
+    footer.style.marginLeft = "250px";
   } else {
     sidebar.style.left = "-250px";
+    footer.style.marginLeft = "0px";
     mainContainer.style.marginLeft = "0";
   }
 });

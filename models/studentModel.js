@@ -12,6 +12,7 @@ const studentSchema = new mongoose.Schema({
   address: String,
   phone: String,
   emergency_contact: String,
+  subjects: [],
 });
 
 const Student = new mongoose.model("Student", studentSchema);
