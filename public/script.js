@@ -24,3 +24,23 @@ document.querySelectorAll(".sidebar a").forEach(function (element) {
     this.style.color = "rgb(25, 118, 210)";
   });
 });
+
+// for student subject view
+const tableViewButton = document.getElementById("tableViewButton");
+const chartViewButton = document.getElementById("chartViewButton");
+const tableView = document.querySelector(".tableView");
+const chartView = document.querySelector(".chartView");
+chartView.style.display = "none";
+
+tableViewButton.addEventListener("click", showTableView);
+chartViewButton.addEventListener("click", showChartView);
+
+function showTableView() {
+  tableView.style.display = "table";
+  chartView.style.display = "none";
+}
+
+function showChartView() {
+  tableView.style.display = "none";
+  chartView.style.display = "block";
+}

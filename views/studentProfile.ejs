@@ -181,47 +181,7 @@
 
   <body>
     
-    <header>
-      <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
-      <div class="header-text">Student Dashboard</div>
-      <div class="user-icon">
-          
-           <img src="../public/images/download.jpg" alt="User Icon"> 
-      </div>
-  </header>
-    <div class="sidebar">
-      
-        <div class="nav_list"> 
-          <a href="studentDashboard" class="nav_link active"> 
-            <i class="fa-solid fa-house"></i>
-            <span class="nav_name">&nbsp;&nbsp; Home</span> 
-          </a> 
-          <a href="studentSubject" class="nav_link"> 
-            <i class="fa-solid fa-book"></i>
-            <span class="nav_name">&nbsp;&nbsp; Subjects</span> 
-          </a> 
-          <a href="#" class="nav_link"> 
-            <i class="fa-solid fa-clipboard-user"></i>
-            <span class="nav_name">&nbsp;&nbsp; Attendance</span> 
-          </a> 
-          <a href="#" class="nav_link"> 
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span class="nav_name"> &nbsp;&nbsp;Complain</span> 
-          </a> 
-          <hr>
-          <p style="color: #d5d5d5; margin-left:15px;">User Info</p>
-          <a href="/studentProfile" class="nav_link"> 
-            <i class="fa-solid fa-address-card"></i>
-            <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
-
-          </a> 
-          <a href="/logout" class="nav_link"> 
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="nav_name"> &nbsp;&nbsp;Logout</span> 
-          </a> 
-        </div>
-    </div>
-  </div>
+    <%-include ('partials/sideAndHeader.ejs')%>
     <!--Container Main start-->
     <main class="height-100 bg-light main-container">
 
@@ -240,9 +200,9 @@
         <%= studentName.charAt(0) %>
         </div>
         <h1><%= studentName %></h1>
-        <p>Roll Number: result.rollNum</p>
-        <p>Class: result.grade</p>
-        <p>School: result.school</p>
+        <p>Roll Number: <%=result.rollNum%></p>
+        <p>Class: <%= result.grade%></p>
+        <p>School: <%=result.school%></p>
       </div>
       <div class="below-container">
         <h3>Personal info</h3>
@@ -250,24 +210,24 @@
         <div class="info-below">
           <div style="margin-right: 30px;">
             <span class="label">Date Of Birth: </span>
-            <span class="val">result.dob</span>
+            <span class="val"><%=result.dob%></span>
             <br>
             <span class="label">username: </span>
-            <span class="val">result.username</span>
+            <span class="val"><%=result.username%></span>
             <br>
             <span class="label">Address: </span>
-            <span class="val">result.address</span>
+            <span class="val"><%=result.address%></span>
             <br>
           </div>
           <div>
             <span class="label">Gender: </span>
-            <span class="val">result.gender</span>
+            <span class="val"><%=result.gender%></span>
             <br>
             <span class="label">Phone: </span>
-            <span class="val">result.phone</span>
+            <span class="val"><%=result.phone%></span>
             <br>
             <span class="label">Emergency Contact: </span>
-            <span class="val">result.emergency</span>
+            <span class="val"><%=result.emergency.name%>, <%=result.emergency.phone%></span>
             <br>
           </div>
           

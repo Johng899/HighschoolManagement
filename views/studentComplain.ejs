@@ -79,6 +79,10 @@
         padding: 20px;
         background-color: #fff; /* Light background color for the main container */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       header button {
@@ -158,41 +162,24 @@
 
   <body>
     <%-include ('partials/sideAndHeader.ejs')%>
-    <!--Container Main start-->
     <main class="height-100 bg-light main-container">
-      <div class="dashboard-container">
-        <h2>Welcome, <%= studentName %>!</h2>
-        <div class="info-above">
-          <a
-            ><div class="dashboard-section">
-              <img
-                src="https://realschoolmanagementsystem.netlify.app/static/media/subjects.013b9ea5daf1ce262cdf1faf054c2b50.svg"
-                alt="Subjects"
-                style="height: 100px; width: 100px; margin-left: 20px"
-              />
-
-              <h3>Class Schedule</h3>
-            </div></a
-          >
-          <a href="/assignmentView.ejs"
-            ><div class="dashboard-section">
-              <img
-                src="https://realschoolmanagementsystem.netlify.app/static/media/assignment.bc61fe3453a587ff7d3028a4494ad169.svg"
-                alt="Subjects"
-                style="height: 100px; width: 100px; margin-left: 20px"
-              />
-              <h3>Assignments</h3>
-              <!-- Add assignments content here -->
-            </div></a
-          >
-        </div>
-        <div class="info-below">
-          <h1>Notices</h1>
-          <p>No notices now</p>
-        </div>
-      </div>
+      <form action="studentComplain" method="POST" class="main-container">
+        <label for="class">Class</label>
+        <input type="text" name="class" id="" />
+        <label for="number">Roll Number</label>
+        <input type="text" name="rollNum" id="" />
+        <label for="complain">Complain</label>
+        <textarea
+          name="complain"
+          id=""
+          cols="30"
+          rows="10"
+          style="margin: 0 0 20px 0"
+        >
+        </textarea>
+        <input type="submit" name="submit" id="submitButton" />
+      </form>
     </main>
-
     <%-include('partials/footer.ejs') %>
   </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student</title>
     <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -19,221 +20,311 @@
       crossorigin="anonymous"
     />
     <style>
-    body {
-      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-        "Lucida Sans", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+      body {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
 
-    .dashboard-container {
-      background-color: #f4f4f4;
-      padding: 20px;
-      transition: transform 0.8s ease-in-out;
-    }
+      .dashboard-container {
+        background-color: #f4f4f4;
+        padding: 20px;
+        transition: transform 0.8s ease-in-out;
+      }
 
-    .dashboard-section {
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin: 20px;
-      padding: 25px;
-      height: 300px;
-      width: 300px;
-      display: grid;
-  justify-content: center;
-      
-    }
-    
-  
-  .sidebar {
-      height: 100vh;
-      width: 250px;
-      background-color: white; /* Dark background color for the sidebar */
-      color: black;
-      position: fixed;
-      left: -250px;
-      transition: 0.5s;
-      overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
-      padding-top: 20px;
-      margin-top: 40px;
-  }
-  
-  .sidebar a {
-      text-decoration: none;
-      color: black;
-      padding: 10px 15px;
-      display: block;
-      transition: background-color 0.3s;
-  }
-  
-  .sidebar a:hover {
-      background-color: #acacac; /* Darker background color on hover */
-  }
-  
-  .main-container {
-      margin-left: 0;
-      margin-top: 60px;
-      transition: margin-left 0.5s;
-      padding: 20px;
-      background-color: #fff; /* Light background color for the main container */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-  }
-  
-  header button {
-      margin-bottom: 15px;
-      background-color: inherit;
-      color: rgb(55, 54, 54);
-      border: none;
-      
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-  }
-  
-  .main-container button:hover {
-      background-color: rgb(25, 118, 210); /* Darker background color on hover */
-  }
-    
-/* header section */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgb(25, 118, 210); /* Dark background color for the header */
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 10px;
-  
-}
+      .dashboard-section {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 25px;
+        height: 300px;
+        width: 300px;
+        display: grid;
+        justify-content: center;
+      }
 
-.header-text {
-  font-size: 18px;
-  font-weight: bold;
-}
+      .sidebar {
+        height: 100vh;
+        width: 250px;
+        background-color: white; /* Dark background color for the sidebar */
+        color: black;
+        position: fixed;
+        left: -250px;
+        transition: 0.5s;
+        overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+        padding-top: 20px;
+        margin-top: 40px;
+      }
 
-.user-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #fff; /* Background color for the circular icon */
-  overflow: hidden;
-  margin-left: 60%;
-}
+      .sidebar a {
+        text-decoration: none;
+        color: black;
+        padding: 10px 15px;
+        display: block;
+        transition: background-color 0.3s;
+      }
 
-.user-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+      .sidebar a:hover {
+        background-color: #acacac; /* Darker background color on hover */
+      }
 
-.info-above{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 30%;
-  
+      .main-container {
+        margin-left: 0;
+        margin-top: 60px;
+        transition: margin-left 0.5s;
+        padding: 20px;
+        background-color: #fff; /* Light background color for the main container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+      }
 
-}
-.info-below{
-  background-color: white;
-  color: black;
-  font-weight: bold;
-  height: 400px;
-  padding: 25px;
-  display: grid;
-  justify-content: center;
-}
-  </style>
-</head>
+      header button {
+        margin-bottom: 15px;
+        background-color: inherit;
+        color: rgb(55, 54, 54);
+        border: none;
 
-<body>
-  
-  <header>
-    <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
-    <div class="header-text">Student Dashboard</div>
-    <div class="user-icon">
-        
-         <img src="../public/images/download.jpg" alt="User Icon"> 
-    </div>
-</header>
-  <div class="sidebar">
-    
-      <div class="nav_list"> 
-        <a href="studentDashboard" class="nav_link active"> 
-          <i class="fa-solid fa-house"></i>
-          <span class="nav_name">&nbsp;&nbsp; Home</span> 
-        </a> 
-        <a href="studentSubject" class="nav_link"> 
-          <i class="fa-solid fa-book"></i>
-          <span class="nav_name">&nbsp;&nbsp; Subjects</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class="fa-solid fa-clipboard-user"></i>
-          <span class="nav_name">&nbsp;&nbsp; Attendance</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <span class="nav_name"> &nbsp;&nbsp;Complain</span> 
-        </a> 
-        <hr>
-        <p style="color: #d5d5d5; margin-left:15px;">User Info</p>
-        <a href="/studentProfile" class="nav_link"> 
-          <i class="fa-solid fa-address-card"></i>
-          <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
 
-        </a> 
-        <a href="/logout" class="nav_link"> 
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span class="nav_name"> &nbsp;&nbsp;Logout</span> 
-        </a> 
-      </div>
-  </div>
-</div>
-  <!--Container Main start-->
-  <main class="height-100 bg-light main-container">
-    
-    <!-- ... -->
-<div>
-    <% if (result && studentName) { %>
+      .main-container button:hover {
+        background-color: rgb(
+          25,
+          118,
+          210
+        ); /* Darker background color on hover */
+      }
+
+      /* header section */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgb(
+          25,
+          118,
+          210
+        ); /* Dark background color for the header */
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 10px;
+      }
+
+      .header-text {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #fff; /* Background color for the circular icon */
+        overflow: hidden;
+        margin-left: 60%;
+      }
+
+      .user-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .info-above {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 30%;
+      }
+      .info-below {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        height: 400px;
+        padding: 25px;
+        display: grid;
+        justify-content: center;
+      }
+      :root {
+        --chart-width: 450px;
+        --chart-height: 350px;
+        --grid-color: #aaa;
+        --bar-color: #f16335;
+        --bar-thickness: 50px;
+        --bar-rounded: 3px;
+        --bar-spacing: 30px;
+      }
+
+      .chart-wrap {
+        margin-left: 50px;
+        font-family: sans-serif;
+      }
+
+      .chart-wrap .title {
+        font-weight: bold;
+        font-size: 1.62em;
+        padding: 0.5em 0 1.8em 0;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .chart-wrap.vertical .grid {
+        transform: translateY(
+            calc(var(--chart-height) / 2 - var(--chart-width) / 2)
+          )
+          translateX(calc(var(--chart-width) / 2 - var(--chart-height) / 2))
+          rotate(-90deg);
+      }
+
+      .chart-wrap.vertical .grid .bar::after {
+        transform: translateY(-50%) rotate(45deg);
+        display: block;
+      }
+
+      .chart-wrap.vertical::before,
+      .chart-wrap.vertical::after {
+        transform: translateX(-0.2em) rotate(90deg);
+      }
+
+      .chart-wrap {
+        height: var(--chart-width);
+        width: var(--chart-height);
+      }
+
+      .chart-wrap .grid {
+        position: relative;
+        padding: 5px 0 5px 0;
+        height: 100%;
+        width: 100%;
+        border-left: 2px solid var(--grid-color);
+        background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 19.5%,
+          fadeout(var(--grid-color), 30%) 20%
+        );
+      }
+
+      .chart-wrap .grid::before {
+        font-size: 0.8em;
+        font-weight: bold;
+        content: "0%";
+        position: absolute;
+        left: -0.5em;
+        top: -1.5em;
+      }
+
+      .chart-wrap .grid::after {
+        font-size: 0.8em;
+        font-weight: bold;
+        content: "100%";
+        position: absolute;
+        right: -1.5em;
+        top: -1.5em;
+      }
+
+      .chart-wrap .bar {
+        width: var(--bar-value);
+        height: var(--bar-thickness);
+        margin: var(--bar-spacing) 0;
+        background-color: var(--bar-color);
+        border-radius: 0 var(--bar-rounded) var(--bar-rounded) 0;
+      }
+
+      .chart-wrap .bar:hover {
+        opacity: 0.7;
+      }
+
+      .chart-wrap .bar::after {
+        content: attr(data-name);
+        margin-left: 100%;
+        padding: 10px;
+        display: inline-block;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%-include ('partials/sideAndHeader.ejs')%>
+
+    <!--Container Main start-->
+    <main class="height-100 bg-light main-container">
+      <!-- ... -->
+      <div>
+        <% if (result && studentName) { %>
         <h1>Welcome to the Student Subject Page, <%= studentName %>!</h1>
-        <!-- Your content for authenticated users goes here -->
+        <!-- My content for authenticated users goes here -->
         <div class="bd-example" style="margin: 20%">
-            <table class="table">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Mark</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% result.subjects.forEach((subject, index) => { %>
-                        <tr>
-                            <th scope="row"><%= index + 1 %></th>
-                            <td><%= subject %></td>
-                            <td><%= result.marks.get(subject) || '' %></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+          <!-- Table -->
+
+          <table class="table tableView">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Mark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result.subjects.forEach((subject, index) => { %>
+              <tr>
+                <td style="text-align: start"><%= index + 1 %></td>
+                <td style="text-align: start"><%= subject[0] %></td>
+                <td style="text-align: start"><%= subject[1] %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+          <!-- Bar chart -->
+          <div class="chart-wrap vertical chartView">
+            <!-- <h2 class="title">Marks with bar chart</h2> -->
+
+            <div class="grid">
+              <% result.subjects.forEach((subject, index) => { %>
+              <div
+                class="bar"
+                style="--bar-value: <%= subject[1] %>%"
+                data-name="<%= subject[0] %>"
+                title="<%=subject[0]%> <%=subject[1] %>%"
+              ></div>
+              <% }); %>
+            </div>
+          </div>
+          <br />
+          <!-- Buttons for switching view -->
+          <div style="margin-top: 20px">
+            <button class="tableViewButton" onclick="showTableView()">
+              Table View
+            </button>
+            <button class="chartViewButton" onclick="showChartView()">
+              Chart View
+            </button>
+          </div>
+          <div id="myDiv">
+            <!-- Plotly chart will be drawn inside this DIV -->
+          </div>
         </div>
-    <% } else { %>
+        <% } else { %>
         <!-- Redirect or display a message for non-authenticated users -->
-        <p>You are not logged in. Please <a href="/login">login</a> to access this page.</p>
-    <% } %>
-</div>
-<!-- ... -->
-
-      
+        <p>
+          You are not logged in. Please <a href="/login">login</a> to access
+          this page.
+        </p>
+        <% } %>
+      </div>
+      <!-- ... -->
     </main>
-  </div>
 
-  <%-include('partials/footer.ejs') %>
-
+    <%-include('partials/footer.ejs') %>
+  </body>
+</html>

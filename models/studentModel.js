@@ -1,4 +1,5 @@
 const { mongoose } = require("mongoose");
+const { type } = require("os");
 
 const studentSchema = new mongoose.Schema({
   name: {
@@ -11,8 +12,17 @@ const studentSchema = new mongoose.Schema({
   dob: Date,
   address: String,
   phone: String,
-  emergency_contact: String,
+  emergency: {
+    name: String,
+    phone: String,
+  },
   subjects: [],
+  rollNum: Number,
+  grade: Number,
+  school: {
+    type: String,
+    default: "Nafyad",
+  },
 });
 
 const Student = new mongoose.model("Student", studentSchema);

@@ -1,12 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const path = require("path");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const studentRoutes = require("./routes/studentRoutes");
 const { Student } = require("./models/studentModel");
 const session = require("express-session");
+const { Complain } = require("./models/complainModel");
 
 const app = express();
 
@@ -40,7 +40,6 @@ connectToDB();
 app.use(express.static("public"));
 
 // home
-
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -53,7 +52,6 @@ app.get("/studentProfile", async (req, res) => {
       result: result,
     });
   } else {
-    // Redirect to the login page or handle unauthorized access
     res.redirect("/students"); // Adjust the route accordingly
   }
 });
@@ -63,7 +61,6 @@ app.get("/students", (req, res) => {
 });
 
 // student login post form
-// app.js
 app.post("/students", async (req, res) => {
   const usernameInput = req.body.email;
   const passwordInput = req.body.password;
@@ -110,6 +107,39 @@ app.get("/studentSubject", async (req, res) => {
   } else {
     // Redirect to the login page or handle unauthorized access
     res.redirect("/students"); // Adjust the route accordingly
+  }
+});
+
+//Complain
+
+app.get("/studentComplain", async (req, res) => {
+  const result = await Student.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    // User is authenticated, render the subject page
+    res.render("studentComplain", {
+      studentName: result.name.first + " " + result.name.last,
+      result: result,
+    });
+  } else {
+    // Redirect to the login page or handle unauthorized access
+    res.redirect("/students"); // Adjust the route accordingly
+  }
+});
+
+app.post("/studentComplain", async (req, res) => {
+  const grade = req.body.class;
+  const rollNum = req.body.rollNum;
+  const complain = req.body.complain;
+  console.log(complain);
+  const success = await Complain.collection.insertOne({
+    class: grade,
+    rollNum: rollNum,
+    complain: complain,
+  });
+  if (success) {
+    res.send("Success");
+  } else {
+    res.send("failed!");
   }
 });
 

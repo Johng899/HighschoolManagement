@@ -1,0 +1,116 @@
+<style>
+  body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .dashboard-container footer {
+    background-color: #f4f4f4;
+    padding: 20px;
+    transition: transform 0.8s ease-in-out;
+  }
+
+  .dashboard-section {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 25px;
+    height: 300px;
+    width: 300px;
+    display: grid;
+    justify-content: center;
+  }
+
+  .sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: white; /* Dark background color for the sidebar */
+    color: black;
+    position: fixed;
+    left: -250px;
+    transition: 0.5s;
+    overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+    padding-top: 20px;
+    margin-top: 40px;
+  }
+
+  .sidebar a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+  }
+
+  .sidebar a:hover {
+    background-color: #acacac; /* Darker background color on hover */
+  }
+
+  .main-container {
+    margin-left: 0;
+    margin-top: 60px;
+    transition: margin-left 0.5s;
+    padding: 20px;
+    background-color: #fff; /* Light background color for the main container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+
+  header button {
+    margin-bottom: 15px;
+    background-color: inherit;
+    color: rgb(55, 54, 54);
+    border: none;
+
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .main-container button:hover {
+    background-color: rgb(25, 118, 210); /* Darker background color on hover */
+  }
+
+  /* header section */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgb(
+      25,
+      118,
+      210
+    ); /* Dark background color for the header */
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 10px;
+  }
+
+  .header-text {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff; /* Background color for the circular icon */
+    overflow: hidden;
+    margin-left: 60%;
+  }
+
+  .user-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
