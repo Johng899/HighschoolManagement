@@ -19,6 +19,15 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".opt").hide();
+        $(".user-icon").click(function () {
+          $(".opt").toggle();
+        });
+      });
+    </script>
     <style>
       body {
         font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -250,6 +259,21 @@
         padding: 10px;
         display: inline-block;
         white-space: nowrap;
+      }
+      .opt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 150px;
+        background-color: white; /* Dark background color for the sidebar */
+        color: black;
+        position: fixed;
+        right: 0px;
+        top: 62px;
+        overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+        padding-top: 20px;
       }
     </style>
   </head>

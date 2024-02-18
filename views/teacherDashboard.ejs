@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".opt").hide();
+        $(".user-icon").click(function () {
+          $(".opt").toggle();
+        });
+      });
+    </script>
+    <style>
+      body {
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .dashboard-container footer {
+        background-color: #f4f4f4;
+        padding: 20px;
+        transition: transform 0.8s ease-in-out;
+      }
+
+      .dashboard-section {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 25px;
+        height: 300px;
+        width: 300px;
+        display: grid;
+        justify-content: center;
+      }
+
+      .sidebar {
+        height: 100vh;
+        width: 250px;
+        background-color: white; /* Dark background color for the sidebar */
+        color: black;
+        position: fixed;
+        left: -250px;
+        transition: 0.5s;
+        overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+        padding-top: 20px;
+        margin-top: 40px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: black;
+        padding: 10px 15px;
+        display: block;
+        transition: background-color 0.3s;
+      }
+
+      .sidebar a:hover {
+        background-color: #acacac; /* Darker background color on hover */
+      }
+
+      .main-container {
+        margin-left: 0;
+        margin-top: 60px;
+        transition: margin-left 0.5s;
+        padding: 20px;
+        background-color: #fff; /* Light background color for the main container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+      }
+
+      header button {
+        margin-bottom: 15px;
+        background-color: inherit;
+        color: rgb(55, 54, 54);
+        border: none;
+
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .main-container button:hover {
+        background-color: rgb(
+          25,
+          118,
+          210
+        ); /* Darker background color on hover */
+      }
+
+      /* header section */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgb(
+          25,
+          118,
+          210
+        ); /* Dark background color for the header */
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 10px;
+      }
+
+      .header-text {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .user-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #fff; /* Background color for the circular icon */
+        overflow: hidden;
+        margin-left: 60%;
+        cursor: pointer;
+      }
+      .opt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 150px;
+        background-color: white; /* Dark background color for the sidebar */
+        color: black;
+        position: fixed;
+        right: 0px;
+        top: 62px;
+        overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+        padding-top: 20px;
+      }
+
+      .user-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .info-above {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 30%;
+      }
+      .info-below {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        height: 400px;
+        padding: 25px;
+        display: grid;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%-include ('partials/sideAndHeaderT.ejs')%>
+    <!--Container Main start-->
+    <main class="height-100 bg-light main-container">
+      <div class="dashboard-container">
+        <h2>Welcome, <%= teacherName %>!</h2>
+        <div class="info-above">
+          <a
+            ><div class="dashboard-section">
+              <img
+                src="data:image/png;base64,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"
+                alt="Subjects"
+                style="height: 100px; width: 100px; margin-left: 20px"
+              />
+
+              <h3>Class Students</h3>
+              <p>20</p>
+            </div></a
+          >
+
+          <div class="dashboard-section">
+            <img
+              src="https://realschoolmanagementsystem.netlify.app/static/media/assignment.bc61fe3453a587ff7d3028a4494ad169.svg"
+              alt="Subjects"
+              style="height: 100px; width: 100px; margin-left: 20px"
+            />
+            <h3>Total Lessons</h3>
+            <p>10</p>
+          </div>
+        </div>
+        <div class="info-below">
+          <h1>Notices</h1>
+          <p>No notices now</p>
+        </div>
+      </div>
+    </main>
+
+    <%-include('partials/footer.ejs') %>
+  </body>
+</html>

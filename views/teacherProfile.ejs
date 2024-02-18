@@ -206,7 +206,7 @@
 
   <body>
     
-    <%-include ('partials/sideAndHeader.ejs')%>
+    <%-include ('partials/sideAndHeaderT.ejs')%>
     <!--Container Main start-->
     <main class="height-100 bg-light main-container">
 
@@ -222,11 +222,10 @@
         display: flex;
         justify-content: center;
         align-items:center">
-        <%= studentName.charAt(0) %>
+        <%= teacherName.charAt(0) %>
         </div>
-        <h1><%= studentName %></h1>
-        <p>Roll Number: <%=result.rollNum%></p>
-        <p>Class: <%= result.grade%></p>
+        <h1><%= teacherName %></h1>
+        <p>Homeroom Class: <%= result.grade%></p>
         <p>School: <%=result.school%></p>
       </div>
       <div class="below-container">
@@ -250,9 +249,6 @@
             <br>
             <span class="label">Phone: </span>
             <span class="val"><%=result.phone%></span>
-            <br>
-            <span class="label">Emergency Contact: </span>
-            <span class="val"><%=result.emergency.name%>, <%=result.emergency.phone%></span>
             <br>
           </div>
           

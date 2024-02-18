@@ -2,10 +2,11 @@
     <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
     <div class="header-text">Student Dashboard</div>
     <div class="user-icon" id="user-icon" style="background-color: cadetblue; display:flex; justify-content:center; align-items:center">
-      <%= studentName.charAt(0) %>
+        <%= teacherName.charAt(0) %>
+         
     </div>
     <div class="opt" id="opt">
-          <a href="/studentProfile" class="nav_link"> 
+          <a href="/teacherProfile" class="nav_link"> 
           <i class="fa-solid fa-address-card"></i>
           <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
         </a> 
@@ -21,30 +22,21 @@
   <div class="sidebar">
     
       <div class="nav_list"> 
-        <a href="studentDashboard" class="nav_link active"> 
+        <a href="teacherDashboard" class="nav_link active"> 
           <i class="fa-solid fa-house"></i>
           <span class="nav_name">&nbsp;&nbsp; Home</span> 
         </a> 
-        <a href="studentAssignment" class="nav_link active"> 
-          <i class="fa-solid fa-book-open"></i>
-          <span class="nav_name">&nbsp;&nbsp; Assignment</span> 
-        </a> 
-
-        <a href="studentSubject" class="nav_link"> 
-          <i class="fa-solid fa-book"></i>
-          <span class="nav_name">&nbsp;&nbsp; Subjects</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class="fa-solid fa-clipboard-user"></i>
-          <span class="nav_name">&nbsp;&nbsp; Attendance</span> 
-        </a> 
-        <a href="studentComplain" class="nav_link"> 
+        <a href="teacherAssignment" class="nav_link active"> 
+            <i class="fa-solid fa-house"></i>
+            <span class="nav_name">&nbsp;&nbsp; Assignment</span> 
+          </a> 
+        <a href="teacherComplain" class="nav_link"> 
           <i class="fa-solid fa-triangle-exclamation"></i>
           <span class="nav_name"> &nbsp;&nbsp;Complain</span> 
         </a> 
         <hr>
         <p style="color: #d5d5d5; margin-left:15px;">User Info</p>
-        <a href="/studentProfile" class="nav_link"> 
+        <a href="/teacherProfile" class="nav_link"> 
           <i class="fa-solid fa-address-card"></i>
           <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
 

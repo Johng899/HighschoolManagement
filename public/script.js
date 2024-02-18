@@ -44,3 +44,5 @@ function showChartView() {
   tableView.style.display = "none";
   chartView.style.display = "block";
 }
+
+//Icon for Account

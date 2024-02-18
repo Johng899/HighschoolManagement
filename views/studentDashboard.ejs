@@ -18,6 +18,15 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".opt").hide();
+        $(".user-icon").click(function () {
+          $(".opt").toggle();
+        });
+      });
+    </script>
     <style>
       body {
         font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -130,6 +139,22 @@
         background-color: #fff; /* Background color for the circular icon */
         overflow: hidden;
         margin-left: 60%;
+        cursor: pointer;
+      }
+      .opt {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        width: 150px;
+        background-color: white; /* Dark background color for the sidebar */
+        color: black;
+        position: fixed;
+        right: 0px;
+        top: 62px;
+        overflow-y: auto; /* Allow scrolling if content exceeds sidebar height */
+        padding-top: 20px;
       }
 
       .user-icon img {
@@ -174,7 +199,7 @@
               <h3>Class Schedule</h3>
             </div></a
           >
-          <a href="/assignmentView.ejs"
+          <a href="/studentAssignment"
             ><div class="dashboard-section">
               <img
                 src="https://realschoolmanagementsystem.netlify.app/static/media/assignment.bc61fe3453a587ff7d3028a4494ad169.svg"

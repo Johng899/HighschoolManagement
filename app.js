@@ -5,8 +5,15 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const studentRoutes = require("./routes/studentRoutes");
 const { Student } = require("./models/studentModel");
+const { Teacher } = require("./models/teacherModel");
 const session = require("express-session");
 const { Complain } = require("./models/complainModel");
+const { Assignment } = require("./models/assignment");
+const multer = require("multer");
+const path = require("path");
+//
+//
+//
 
 const app = express();
 
@@ -95,6 +102,23 @@ app.get("/studentDashboard", async (req, res) => {
   }
 });
 
+// Assignment View
+
+app.get("/studentAssignment", async (req, res) => {
+  const result = await Student.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    const assignment = await Assignment.find({
+      grade: result.grade,
+    });
+    console.log(assignment);
+    res.render("studentAssignment", { assignments: assignment });
+  } else {
+    res.redirect("/students");
+  }
+});
+
+// assignment download
+
 // app.js
 app.get("/studentSubject", async (req, res) => {
   const result = await Student.findOne({ _id: req.session.studentId });
@@ -135,6 +159,7 @@ app.post("/studentComplain", async (req, res) => {
     class: grade,
     rollNum: rollNum,
     complain: complain,
+    type: "Student",
   });
   if (success) {
     res.send("Success");
@@ -153,6 +178,165 @@ app.get("/logout", async (req, res) => {
       res.redirect("/"); // Redirect to the login page after logout
     }
   });
+});
+
+//Teacher
+
+app.get("/teachers", (req, res) => {
+  res.render("teacherView");
+});
+
+// teachers login post form
+app.post("/teachers", async (req, res) => {
+  const usernameInput = req.body.email;
+  const passwordInput = req.body.password;
+  const result = await Teacher.findOne({ username: usernameInput });
+
+  if (result) {
+    if (result.password == passwordInput) {
+      req.session.studentId = result._id; // Store user ID in the session
+      res.render("teacherDashboard", {
+        teacherName: result.name.first + " " + result.name.last,
+        result: result,
+      });
+    } else {
+      console.log("wrong password");
+    }
+  } else {
+    console.log("no such user sorry (:");
+  }
+});
+
+// Teachers Dashboard
+
+app.get("/teacherDashboard", async (req, res) => {
+  const result = await Teacher.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    // User is authenticated, render the subject page
+    res.render("teacherDashboard", {
+      teacherName: result.name.first + " " + result.name.last,
+      result: result,
+    });
+  } else {
+    // Redirect to the login page or handle unauthorized access
+    res.redirect("/teachers"); // Adjust the route accordingly
+  }
+});
+
+// Teachers Profile
+app.get("/teacherProfile", async (req, res) => {
+  const result = await Teacher.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    // User is authenticated, render the subject page
+    res.render("teacherProfile", {
+      teacherName: result.name.first + " " + result.name.last,
+      result: result,
+    });
+  } else {
+    res.redirect("/teachers"); // Adjust the route accordingly
+  }
+});
+
+// Teacher complain
+
+app.get("/teacherComplain", async (req, res) => {
+  const result = await Teacher.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    // User is authenticated, render the subject page
+    res.render("teacherComplain", {
+      teacherName: result.name.first + " " + result.name.last,
+      result: result,
+    });
+  } else {
+    // Redirect to the login page or handle unauthorized access
+    res.redirect("/teachers"); // Adjust the route accordingly
+  }
+});
+
+// Set up Multer to save uploaded files to the public/docs folder
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "public/docs"); // Save files to the public/docs folder
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname); // Use original filename
+    },
+  }),
+});
+
+app.post("/teacherAssignment", upload.single("pdf"), async (req, res) => {
+  try {
+    // Check if file was uploaded
+    if (!req.file) {
+      return res.status(400).send("No file uploaded");
+    }
+
+    const { title, description, grade } = req.body;
+    const pdfUrl = `${req.protocol}://${req.get("host")}/docs/${
+      req.file.originalname
+    }`; // Construct the pdfUrl
+
+    // Add assignment to the database
+    const assignment = new Assignment({
+      title: title,
+      description: description,
+      pdfUrl: pdfUrl,
+      grade: parseInt(grade),
+    });
+
+    await assignment.save();
+
+    res.redirect("/teacherDashboard");
+  } catch (err) {
+    console.error("Error adding assignment:", err);
+    res.status(500).send("Error adding assignment");
+  }
+});
+// Teacher Assignment
+
+app.get("/teacherAssignment", async (req, res) => {
+  const result = await Teacher.findOne({ _id: req.session.studentId });
+  if (req.session.studentId) {
+    // User is authenticated, render the subject page
+    res.render("teacherAssignment", {
+      teacherName: result.name.first + " " + result.name.last,
+      result: result,
+    });
+  } else {
+    // Redirect to the login page or handle unauthorized access
+    res.redirect("/teachers"); // Adjust the route accordingly
+  }
+});
+
+//post assignment
+
+app.post("/teacherAssignment", upload.single("pdf"), async (req, res) => {
+  console.log(req.body, req.file);
+  const filePath = req.file.path;
+
+  // Generate a download link for the uploaded file
+  const downloadLink = `${req.protocol}://${req.get("host")}/${filePath}`;
+  try {
+    const title = req.body.title;
+    const description = req.body.description;
+    const grade = Number(req.body.grade);
+    const pdfUrl = downloadLink;
+    console.log(title, description, pdfUrl);
+    const success = await Assignment.collection.insertOne({
+      title: title,
+      description: description,
+      pdfUrl: pdfUrl,
+      grade: grade,
+    });
+    if (success) {
+      res.redirect("/teacherDashboard");
+    } else {
+      res.send("failed!");
+    }
+  } catch (err) {
+    res.send("Error adding assignment:");
+  }
 });
 
 const PORT = process.env.PORT || 3000;

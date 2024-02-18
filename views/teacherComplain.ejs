@@ -185,12 +185,12 @@
   </head>
 
   <body>
-    <%-include ('partials/sideAndHeader.ejs')%>
+    <%-include ('partials/sideAndHeaderT.ejs')%>
     <main class="height-100 bg-light main-container">
-      <form action="studentComplain" method="POST" class="main-container">
+      <form action="teacherComplain" method="POST" class="main-container">
         <label for="class">Class</label>
         <input type="text" name="class" id="" />
-        <label for="number">Roll Number</label>
+        <label for="number">Id</label>
         <input type="text" name="rollNum" id="" />
         <label for="complain">Complain</label>
         <textarea

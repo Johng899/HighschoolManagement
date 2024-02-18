@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+  </head>
+  <body>
+    <% if (assignments === null) { %>
+    <p>No assignments available today. Check back later!</p>
+    <% } else { %>
+    <h2>Assignments</h2>
+    <table style="width: 100%; border-collapse: collapse">
+      <thead>
+        <tr style="background-color: #f2f2f2">
+          <th style="padding: 8px; border: 1px solid #ddd">Title</th>
+          <th style="padding: 8px; border: 1px solid #ddd">Description</th>
+          <th style="padding: 8px; border: 1px solid #ddd">Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% assignments.forEach(function(assignment) { %>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            <%= assignment.title %>
+          </td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            <%= assignment.description %>
+          </td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            <a href="<%= assignment.pdfUrl.slice(21) %>">Download</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <% } %>
+  </body>
+</html>
