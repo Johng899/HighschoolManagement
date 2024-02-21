@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const studentRoutes = require("./routes/studentRoutes");
 const { Student } = require("./models/studentModel");
 const { Teacher } = require("./models/teacherModel");
 const session = require("express-session");
@@ -11,6 +10,8 @@ const { Complain } = require("./models/complainModel");
 const { Assignment } = require("./models/assignment");
 const multer = require("multer");
 const path = require("path");
+const { Admin } = require("./models/adminModel");
+
 //
 //
 //
@@ -111,7 +112,11 @@ app.get("/studentAssignment", async (req, res) => {
       grade: result.grade,
     });
     console.log(assignment);
-    res.render("studentAssignment", { assignments: assignment });
+    res.render("studentAssignment", {
+      assignments: assignment,
+      studentName: result.name.first + " " + result.name.last,
+      result: result,
+    });
   } else {
     res.redirect("/students");
   }
@@ -154,12 +159,13 @@ app.post("/studentComplain", async (req, res) => {
   const grade = req.body.class;
   const rollNum = req.body.rollNum;
   const complain = req.body.complain;
-  console.log(complain);
+  const currentDate = new Date();
   const success = await Complain.collection.insertOne({
     class: grade,
     rollNum: rollNum,
     complain: complain,
     type: "Student",
+    date: currentDate,
   });
   if (success) {
     res.send("Success");
@@ -265,6 +271,26 @@ const upload = multer({
   }),
 });
 
+//
+app.post("/teacherComplain", async (req, res) => {
+  const grade = req.body.class;
+  const rollNum = req.body.rollNum;
+  const complain = req.body.complain;
+  const currentDate = new Date();
+  const success = await Complain.collection.insertOne({
+    class: grade,
+    rollNum: rollNum,
+    complain: complain,
+    type: "Teacher",
+    date: currentDate,
+  });
+  if (success) {
+    res.send("Success");
+  } else {
+    res.send("failed!");
+  }
+});
+
 app.post("/teacherAssignment", upload.single("pdf"), async (req, res) => {
   try {
     // Check if file was uploaded
@@ -337,6 +363,126 @@ app.post("/teacherAssignment", upload.single("pdf"), async (req, res) => {
   } catch (err) {
     res.send("Error adding assignment:");
   }
+});
+
+//Admin
+app.get("/admin", async (req, res) => {
+  res.render("adminView");
+});
+
+// teachers login post form
+app.post("/admin", async (req, res) => {
+  const usernameInput = req.body.email;
+  const passwordInput = req.body.password;
+  const result = await Admin.findOne({ username: usernameInput });
+  console.log(result);
+  const studNum = await Student.find();
+  const len = studNum.length;
+  const teachNum = await Teacher.find();
+  const lenTeach = teachNum.length;
+
+  if (result) {
+    if (result.password == passwordInput) {
+      req.session.studentId = result._id; // Store user ID in the session
+      res.render("adminDashboard", {
+        adminName: result.name.first + " " + result.name.last,
+        result: result,
+        studLen: len,
+        teachNum: lenTeach,
+      });
+    } else {
+      console.log("wrong password");
+    }
+  } else {
+    console.log("no such user sorry (:");
+  }
+});
+
+//Add student
+app.get("/addStudent", (req, res) => {
+  res.render("addStudent");
+});
+
+app.post("/addStudent", async (req, res) => {
+  const fname = req.body.first_name;
+  const lname = req.body.last_name;
+  const username = req.body.username;
+  const password = req.body.password;
+  const gender = req.body.gender;
+  const dob = req.body.dob;
+  const address = req.body.address;
+  const phone = req.body.phone;
+  const emergencyName = req.body.emergency_name;
+  const emergencyPhone = req.body.emergency_phone;
+  const rollNum = req.body.rollNum;
+  const grade = req.body.grade;
+  const school = req.body.school;
+  var subject = req.body.subjects;
+  var subjectList = subject.split(",");
+  var lst = [];
+  for (var i = 0; i < subjectList.length; i++) {
+    lst.push([subjectList[i], 0]);
+  }
+
+  const success = await Student.create({
+    name: {
+      first: fname,
+      last: lname,
+    },
+    username: username,
+    password: password,
+    gender: gender,
+    dob: dob,
+    address: address,
+    phone: phone,
+    emergency: {
+      name: emergencyName,
+      phone: emergencyPhone,
+    },
+    subjects: lst,
+    rollNum: rollNum,
+    grade: grade,
+    school: school,
+  });
+  if (success) {
+    res.send("Successfully added");
+  } else {
+    res.send("Failed to add a student");
+  }
+});
+
+// Teacher register
+app.get("/addTeacher", (req, res) => {
+  res.render("addTeacher");
+});
+
+app.post("/addTeacher", async (req, res) => {
+  const success = await Teacher.create({
+    name: {
+      first: req.body.first_name,
+      last: req.body.last_name,
+    },
+    username: req.body.username,
+    password: req.body.password,
+    gender: req.body.gender,
+    dob: req.body.dob,
+    address: req.body.address,
+    phone: req.body.phone,
+    subject: req.body.subject,
+    grade: req.body.grade,
+    school: req.body.school,
+  });
+  if (success) {
+    res.send("Successfully added");
+  } else {
+    res.send("Failed to add a student");
+  }
+});
+
+// See complaints
+app.get("/seeComplain", async (req, res) => {
+  const complain = await Complain.find();
+  res.render("seeComplain", { complaints: complain });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -1,16 +1,10 @@
 <header>
     <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
-    <div class="header-text">Teacher Dashboard</div>
+    <div class="header-text">Student Dashboard</div>
     <div class="user-icon" id="user-icon" style="background-color: cadetblue; display:flex; justify-content:center; align-items:center">
-        <%= teacherName.charAt(0) %>
-         
+      <%= adminName.charAt(0) %>
     </div>
     <div class="opt" id="opt">
-          <a href="/teacherProfile" class="nav_link"> 
-          <i class="fa-solid fa-address-card"></i>
-          <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
-        </a> 
-        <hr>
         <a href="/logout" class="nav_link"> 
           <i class="fa-solid fa-right-from-bracket"></i>
           <span class="nav_name"> &nbsp;&nbsp;Logout</span> 
@@ -22,25 +16,29 @@
   <div class="sidebar">
     
       <div class="nav_list"> 
-        <a href="teacherDashboard" class="nav_link active"> 
+        <a href="adminDashboard" class="nav_link active"> 
           <i class="fa-solid fa-house"></i>
           <span class="nav_name">&nbsp;&nbsp; Home</span> 
         </a> 
-        <a href="teacherAssignment" class="nav_link active"> 
-            <i class="fa-solid fa-house"></i>
-            <span class="nav_name">&nbsp;&nbsp; Assignment</span> 
-          </a> 
-        <a href="teacherComplain" class="nav_link"> 
+        <a href="addStudent" class="nav_link active"> 
+          <i class="fa-solid fa-book-open"></i>
+          <span class="nav_name">&nbsp;&nbsp; Add Student</span> 
+        </a> 
+
+        <a href="addTeacher" class="nav_link"> 
+          <i class="fa-solid fa-book"></i>
+          <span class="nav_name">&nbsp;&nbsp; Add Teacher</span> 
+        </a> 
+        <a href="#" class="nav_link"> 
+          <i class="fa-solid fa-clipboard-user"></i>
+          <span class="nav_name">&nbsp;&nbsp; Attendance</span> 
+        </a> 
+        <a href="seeComplain" class="nav_link"> 
           <i class="fa-solid fa-triangle-exclamation"></i>
           <span class="nav_name"> &nbsp;&nbsp;Complain</span> 
         </a> 
         <hr>
         <p style="color: #d5d5d5; margin-left:15px;">User Info</p>
-        <a href="/teacherProfile" class="nav_link"> 
-          <i class="fa-solid fa-address-card"></i>
-          <span class="nav_name"> &nbsp;&nbsp;Profile</span> 
-
-        </a> 
         <a href="/logout" class="nav_link"> 
           <i class="fa-solid fa-right-from-bracket"></i>
           <span class="nav_name"> &nbsp;&nbsp;Logout</span> 

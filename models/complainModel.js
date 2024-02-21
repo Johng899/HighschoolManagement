@@ -5,6 +5,7 @@ const complainSchema = new mongoose.Schema({
   rollNum: Number,
   complain: String,
   type: String,
+  date: Date,
 });
 
 const Complain = new mongoose.model("Complain", complainSchema);
